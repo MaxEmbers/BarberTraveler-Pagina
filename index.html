@@ -1,20 +1,145 @@
-<html lang="es"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Barber Traveler</title>
-  <link rel="stylesheet" href="estilos.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      background-color: #111;
+    }
+
+    .header {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), 
+                  url('https://i.imgur.com/nvJ2kw4.jpeg') center/cover no-repeat;
+    }
+
+    .navbar {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 50px;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .nav-left,
+    .nav-right {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-left a,
+    .nav-right a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .hero {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-left: 100px;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .btn-cta {
+      padding: 15px 30px;
+      background-color: white;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .btn-cta:hover {
+      background-color: #ccc;
+    }
+
+    /* Galería */
+    .galeria {
+      padding: 80px 50px;
+      background-color: #1b1b1b;
+      text-align: center;
+    }
+
+    .galeria h2 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .galeria-grid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .galeria-grid img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
+
+  <header class="header" id="inicio">
     <nav class="navbar">
       <ul class="nav-left">
-        <li><a href="#">Inicio</a></li>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#galeria">Galería</a></li>
         <li><a href="#">Servicios</a></li>
-        <li><a href="#">Galería</a></li>
       </ul>
-      <div class="logo">Barber Traveler</div>
+      <div class="logo">
+        <img src="https://i.imgur.com/HMmhXpW.png" alt="Barber Traveler Logo" />
+      </div>
       <ul class="nav-right">
         <li><a href="#"><span class="icon">📧</span> Contacto</a></li>
         <li><a href="#"><span class="icon">📞</span> 123 456 789</a></li>
@@ -23,99 +148,23 @@
     <div class="hero">
       <div class="hero-text">
         <h1>Estilo y precisión</h1>
-        <p>Para quienes nunca se detienen.
-
-</p>
+        <p>Para quienes nunca se detienen.</p>
         <a href="#" class="btn-cta">Reservar cita</a>
       </div>
     </div>
   </header>
 
-<style>* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <section class="galeria" id="galeria">
+    <h2>Nuestra Galería</h2>
+    <div class="galeria-grid">
+      <img src="https://i.imgur.com/6eEwnkY.jpeg" alt="Imagen 1">
+      <img src="https://i.imgur.com/d3mqJtJ.jpeg" alt="Imagen 2">
+      <img src="https://i.imgur.com/MVPDADH.jpeg" alt="Imagen 3">
+      <img src="https://i.imgur.com/XJw3Tsm.jpeg" alt="Imagen 4">
+      <img src="https://i.imgur.com/CnOxQ6K.jpeg" alt="Imagen 5">
+    </div>
+  </section>
 
-body {
-  font-family: 'Montserrat', sans-serif;
-  color: white;
-}
+</body>
+</html>
 
-.header {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('https://i.imgur.com/nvJ2kw4.jpeg') center/cover no-repeat;
-}
-
-.navbar {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 50px;
-  align-items: center;
-  z-index: 10;
-}
-
-.nav-left,
-.nav-right {
-  display: flex;
-  gap: 30px;
-  list-style: none;
-}
-
-.nav-left a,
-.nav-right a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  border: 2px solid white;
-  padding: 4px 12px;
-  color: white;
-}
-
-.hero {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding-left: 100px;
-}
-
-.hero-text {
-  max-width: 600px;
-}
-
-.hero-text h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
-
-.hero-text p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-}
-
-.btn-cta {
-  padding: 15px 30px;
-  background-color: white;
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-.btn-cta:hover {
-  background-color: #ccc;
-}
-</style>
-
-</body></html>
