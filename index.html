@@ -5,7 +5,126 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Barber Traveler</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="estilos.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      overflow-x: hidden;
+      background-color: #000;
+    }
+
+    .header, .galeria {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: transform 0.8s ease-in-out;
+    }
+
+    .header {
+      background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('https://i.imgur.com/nvJ2kw4.jpeg') center/cover no-repeat;
+      z-index: 1;
+    }
+
+    .galeria {
+      background: #111;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      transform: translateX(100vw);
+      z-index: 2;
+    }
+
+    .galeria img {
+      width: 45%;
+      height: auto;
+      margin: 2.5%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.03);
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 50px;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 10;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-left a, .nav-right a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-left a:hover, .nav-right a:hover {
+      text-decoration: underline;
+    }
+
+    .logo img {
+      height: 80px;
+      object-fit: contain;
+    }
+
+    .hero {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-left: 100px;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .btn-cta {
+      padding: 15px 30px;
+      background-color: white;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .btn-cta:hover {
+      background-color: #ccc;
+    }
+  </style>
 </head>
 <body>
   <header class="header" id="inicio">
@@ -16,7 +135,7 @@
         <li><a href="#" onclick="mostrarGaleria()">Galería</a></li>
       </ul>
       <div class="logo">
-        <img src="https://i.imgur.com/HMmhXpW.png" alt="Barber Traveler" />
+        <img src="https://i.imgur.com/HMmhXpW.png" alt="Logo">
       </div>
       <ul class="nav-right">
         <li><a href="#"><span class="icon">📧</span> Contacto</a></li>
@@ -32,36 +151,27 @@
     </div>
   </header>
 
-  <!-- Galería creativa -->
   <section class="galeria" id="galeria">
-    <div class="slider">
-      <img src="https://i.imgur.com/6eEwnkY.jpeg" alt="Galería 1" class="slide active" />
-      <img src="https://i.imgur.com/d3mqJtJ.jpeg" alt="Galería 2" class="slide" />
-      <img src="https://i.imgur.com/MVPDADH.jpeg" alt="Galería 3" class="slide" />
-      <img src="https://i.imgur.com/XJw3Tsm.jpeg" alt="Galería 4" class="slide" />
-      <img src="https://i.imgur.com/CnOxQ6K.jpeg" alt="Galería 5" class="slide" />
-    </div>
+    <img src="https://i.imgur.com/6eEwnkY.jpeg" alt="gal1">
+    <img src="https://i.imgur.com/d3mqJtJ.jpeg" alt="gal2">
+    <img src="https://i.imgur.com/MVPDADH.jpeg" alt="gal3">
+    <img src="https://i.imgur.com/XJw3Tsm.jpeg" alt="gal4">
+    <img src="https://i.imgur.com/CnOxQ6K.jpeg" alt="gal5">
   </section>
 
   <script>
+    const inicio = document.getElementById('inicio');
+    const galeria = document.getElementById('galeria');
+
     function mostrarGaleria() {
-      document.getElementById("inicio").style.transform = "translateX(-100vw)";
-      document.getElementById("galeria").style.transform = "translateX(0)";
+      inicio.style.transform = 'translateX(-100vw)';
+      galeria.style.transform = 'translateX(0)';
     }
 
     function mostrarInicio() {
-      document.getElementById("inicio").style.transform = "translateX(0)";
-      document.getElementById("galeria").style.transform = "translateX(100vw)";
+      inicio.style.transform = 'translateX(0)';
+      galeria.style.transform = 'translateX(100vw)';
     }
-
-    // Carrusel automático
-    let index = 0;
-    setInterval(() => {
-      const slides = document.querySelectorAll(".slide");
-      slides.forEach(slide => slide.classList.remove("active"));
-      index = (index + 1) % slides.length;
-      slides[index].classList.add("active");
-    }, 3000);
   </script>
 </body>
 </html>
