@@ -12,48 +12,14 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
       color: white;
-      overflow-x: hidden;
       background-color: #000;
-    }
-
-    .header, .galeria {
-      width: 100vw;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      left: 0;
-      transition: transform 0.8s ease-in-out;
-    }
-
-    .header {
-      background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('https://i.imgur.com/nvJ2kw4.jpeg') center/cover no-repeat;
-      z-index: 1;
-    }
-
-    .galeria {
-      background: #111;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      transform: translateX(100vw);
-      z-index: 2;
-    }
-
-    .galeria img {
-      width: 45%;
-      height: auto;
-      margin: 2.5%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .galeria img:hover {
-      transform: scale(1.03);
     }
 
     .navbar {
@@ -90,8 +56,9 @@
       object-fit: contain;
     }
 
-    .hero {
-      height: 100%;
+    .header {
+      height: 100vh;
+      background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('https://i.imgur.com/nvJ2kw4.jpeg') center/cover no-repeat;
       display: flex;
       align-items: center;
       padding-left: 100px;
@@ -124,32 +91,73 @@
     .btn-cta:hover {
       background-color: #ccc;
     }
+
+    .galeria {
+      min-height: 100vh;
+      background-color: #111;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      gap: 20px;
+    }
+
+    .galeria img {
+      width: 45%;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 768px) {
+      .galeria img {
+        width: 90%;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .nav-left, .nav-right {
+        gap: 15px;
+      }
+
+      .logo img {
+        height: 60px;
+      }
+    }
   </style>
 </head>
 <body>
-  <header class="header" id="inicio">
-    <nav class="navbar">
-      <ul class="nav-left">
-        <li><a href="#" onclick="mostrarInicio()">Inicio</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#" onclick="mostrarGaleria()">Galería</a></li>
-      </ul>
-      <div class="logo">
-        <img src="https://i.imgur.com/HMmhXpW.png" alt="Logo">
-      </div>
-      <ul class="nav-right">
-        <li><a href="#"><span class="icon">📧</span> Contacto</a></li>
-        <li><a href="#"><span class="icon">📞</span> 123 456 789</a></li>
-      </ul>
-    </nav>
-    <div class="hero">
-      <div class="hero-text">
-        <h1>Estilo y precisión</h1>
-        <p>Para quienes nunca se detienen.</p>
-        <a href="#" class="btn-cta">Reservar cita</a>
-      </div>
+  <nav class="navbar">
+    <ul class="nav-left">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#">Servicios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+    </ul>
+    <div class="logo">
+      <img src="https://i.imgur.com/HMmhXpW.png" alt="Logo">
     </div>
-  </header>
+    <ul class="nav-right">
+      <li><a href="#"><span class="icon">📧</span> Contacto</a></li>
+      <li><a href="#"><span class="icon">📞</span> 123 456 789</a></li>
+    </ul>
+  </nav>
+
+  <section class="header" id="inicio">
+    <div class="hero-text">
+      <h1>Estilo y precisión</h1>
+      <p>Para quienes nunca se detienen.</p>
+      <a href="#" class="btn-cta">Reservar cita</a>
+    </div>
+  </section>
 
   <section class="galeria" id="galeria">
     <img src="https://i.imgur.com/6eEwnkY.jpeg" alt="gal1">
@@ -158,20 +166,6 @@
     <img src="https://i.imgur.com/XJw3Tsm.jpeg" alt="gal4">
     <img src="https://i.imgur.com/CnOxQ6K.jpeg" alt="gal5">
   </section>
-
-  <script>
-    const inicio = document.getElementById('inicio');
-    const galeria = document.getElementById('galeria');
-
-    function mostrarGaleria() {
-      inicio.style.transform = 'translateX(-100vw)';
-      galeria.style.transform = 'translateX(0)';
-    }
-
-    function mostrarInicio() {
-      inicio.style.transform = 'translateX(0)';
-      galeria.style.transform = 'translateX(100vw)';
-    }
-  </script>
 </body>
 </html>
+
