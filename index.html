@@ -56,6 +56,24 @@
       object-fit: contain;
     }
 
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-antiguo {
+      border: 2px solid white;
+      padding: 5px 10px;
+      font-size: 1.2rem;
+      margin-top: 4px;
+      opacity: 95%;
+      line-height: 1.1;
+      text-align: center;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
     .header {
       height: 100vh;
       background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('https://i.imgur.com/nvJ2kw4.jpeg') center/cover no-repeat;
@@ -99,7 +117,7 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      padding: 20px 20px;
+      padding: 20px;
       gap: 10px;
     }
 
@@ -112,6 +130,52 @@
 
     .galeria img:hover {
       transform: scale(1.03);
+    }
+
+    .formulario {
+      padding: 50px 20px;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .formulario h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    input, textarea, button {
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    input, textarea {
+      width: 100%;
+    }
+
+    button {
+      background-color: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ccc;
     }
 
     @media (max-width: 768px) {
@@ -133,36 +197,18 @@
         height: 60px;
       }
     }
-    .logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.logo-antiguo {
-  border: 2px solid white;
-  padding: 5px 10px;
-  font-size: 1.2rem;
-  margin-top: 4px;
-  opacity: 95%;
-  line-height: 1.1;
-  text-align: center;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
   </style>
 </head>
 <body>
   <nav class="navbar">
     <ul class="nav-left">
       <li><a href="#inicio">Inicio</a></li>
-      <li><a href="#">Servicios</a></li>
+      <li><a href="#formulario">Reservar</a></li>
       <li><a href="#galeria">Galería</a></li>
     </ul>
     <div class="logo">
-       <img src="https://i.imgur.com/HMmhXpW.png" alt="Logo">
-       <div class="logo-antiguo">Barber<br>Traveler</div>
+      <img src="https://i.imgur.com/HMmhXpW.png" alt="Logo">
+      <div class="logo-antiguo">Barber<br>Traveler</div>
     </div>
     <ul class="nav-right">
       <li><a href="#"><span class="icon">📧</span> Contacto</a></li>
@@ -174,8 +220,24 @@
     <div class="hero-text">
       <h1>Estilo y precisión</h1>
       <p>Para quienes nunca se detienen.</p>
-      <a href="#" class="btn-cta">Reservar cita</a>
+      <a href="#formulario" class="btn-cta">Reservar cita</a>
     </div>
+  </section>
+
+  <section class="formulario" id="formulario">
+    <h2>Reservar una cita</h2>
+    <form action="https://formsubmit.co/grassano851@gmail.com" method="POST">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <input type="email" name="email" placeholder="Tu correo" required>
+      <input type="datetime-local" name="fecha_hora" required>
+      <textarea name="mensaje" placeholder="Mensaje o solicitud especial" rows="4"></textarea>
+
+      <!-- Formsubmit options -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://tuusuario.github.io/gracias.html">
+
+      <button type="submit">Enviar Reserva</button>
+    </form>
   </section>
 
   <section class="galeria" id="galeria">
