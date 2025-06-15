@@ -104,6 +104,7 @@
       text-decoration: none;
       border-radius: 5px;
       transition: 0.3s;
+      cursor: pointer;
     }
 
     .btn-cta:hover {
@@ -132,50 +133,80 @@
       transform: scale(1.03);
     }
 
-    .formulario {
-      padding: 50px 20px;
-      background-color: #000;
-      display: flex;
-      flex-direction: column;
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
       align-items: center;
-      gap: 20px;
+      z-index: 1000;
     }
 
-    .formulario h2 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      width: 100%;
+    .modal-content {
+      background-color: #111;
+      padding: 30px;
+      border-radius: 10px;
       max-width: 500px;
+      width: 90%;
+      position: relative;
+      animation: fadeIn 0.3s ease-in-out;
     }
 
-    input, textarea, button {
-      padding: 12px;
+    .modal-content h2 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+
+    .modal-content input,
+    .modal-content textarea,
+    .modal-content button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
       border: none;
       border-radius: 5px;
       font-family: inherit;
-      font-size: 1rem;
     }
 
-    input, textarea {
-      width: 100%;
-    }
-
-    button {
+    .modal-content button {
       background-color: white;
       color: black;
       font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
     }
 
-    button:hover {
+    .modal-content button:hover {
       background-color: #ccc;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    .agradecimiento {
+      color: lightgreen;
+      text-align: center;
+      font-size: 1.2rem;
+      animation: fadeOut 3s forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      90% { opacity: 0.5; }
+      100% { opacity: 0; display: none; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     @media (max-width: 768px) {
@@ -203,7 +234,6 @@
   <nav class="navbar">
     <ul class="nav-left">
       <li><a href="#inicio">Inicio</a></li>
-      <li><a href="#formulario">Reservar</a></li>
       <li><a href="#galeria">Galería</a></li>
     </ul>
     <div class="logo">
@@ -220,24 +250,8 @@
     <div class="hero-text">
       <h1>Estilo y precisión</h1>
       <p>Para quienes nunca se detienen.</p>
-      <a href="#formulario" class="btn-cta">Reservar cita</a>
+      <button class="btn-cta" onclick="abrirModal()">Reservar cita</button>
     </div>
-  </section>
-
-  <section class="formulario" id="formulario">
-    <h2>Reservar una cita</h2>
-    <form action="https://formsubmit.co/grassano851@gmail.com" method="POST">
-      <input type="text" name="nombre" placeholder="Tu nombre" required>
-      <input type="email" name="email" placeholder="Tu correo" required>
-      <input type="datetime-local" name="fecha_hora" required>
-      <textarea name="mensaje" placeholder="Mensaje o solicitud especial" rows="4"></textarea>
-
-      <!-- Formsubmit options -->
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://tuusuario.github.io/gracias.html">
-
-      <button type="submit">Enviar Reserva</button>
-    </form>
   </section>
 
   <section class="galeria" id="galeria">
@@ -247,6 +261,63 @@
     <img src="https://i.imgur.com/XJw3Tsm.jpeg" alt="gal4">
     <img src="https://i.imgur.com/CnOxQ6K.jpeg" alt="gal5">
   </section>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="cerrarModal()">×</span>
+      <h2>Reservar cita</h2>
+      <form id="formularioReserva">
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+        <input type="email" name="email" placeholder="Tu correo" required>
+        <input type="datetime-local" name="fecha" required>
+        <textarea name="mensaje" placeholder="Mensaje o solicitud especial" rows="4"></textarea>
+        <button type="submit">Enviar Reserva</button>
+      </form>
+      <div id="mensajeAgradecimiento" class="agradecimiento" style="display:none;">
+        ¡Gracias por tu reserva! Te responderemos pronto.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("modal");
+    const formulario = document.getElementById("formularioReserva");
+    const mensaje = document.getElementById("mensajeAgradecimiento");
+
+    function abrirModal() {
+      modal.style.display = "flex";
+    }
+
+    function cerrarModal() {
+      modal.style.display = "none";
+      formulario.reset();
+      mensaje.style.display = "none";
+    }
+
+    formulario.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Simular envío por FormSubmit
+      fetch("https://formsubmit.co/ajax/grassano851@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre: formulario.nombre.value,
+          email: formulario.email.value,
+          fecha: formulario.fecha.value,
+          mensaje: formulario.mensaje.value,
+          _captcha: "false"
+        }),
+      }).then(() => {
+        formulario.style.display = "none";
+        mensaje.style.display = "block";
+        setTimeout(() => {
+          cerrarModal();
+          formulario.style.display = "block";
+        }, 3500);
+      });
+    });
+  </script>
 </body>
 </html>
-
